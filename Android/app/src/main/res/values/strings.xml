@@ -3,4 +3,7 @@
     <string name="history_move_string"><b>%s</b>에서 <b>%s</b>로 <b>%s</b>하였습니다.</string>
     <string name="history_add_string"><b>%s를</b> <b>%s</b>하였습니다.</string>
     <string name="app_bar_title">TO-DO LIST</string>
+    <string name="close">Close</string>
+    <string name="menu">Menu</string>
+    <string name="user_image">User Image</string>
 </resources>
