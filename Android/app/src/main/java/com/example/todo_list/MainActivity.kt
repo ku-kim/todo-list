@@ -12,23 +12,14 @@ import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    lateinit var navigationView: NavigationView
-    lateinit var drawerLayout: DrawerLayout
-
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        drawerLayout = findViewById(R.id.main_layout)
-
-        val btnmenu = findViewById<ImageButton>(R.id.btn_menu)
-        btnmenu.setOnClickListener { drawerLayout.openDrawer(GravityCompat.END) }
-
-        navigationView = findViewById(R.id.navi_view)
-        navigationView.setNavigationItemSelectedListener(this)
-
-
+        binding.btnMenu.setOnClickListener { binding.mainLayout.openDrawer(GravityCompat.END) }
+        binding.btnClose.setOnClickListener { binding.mainLayout.closeDrawer(GravityCompat.END) }
+        binding.naviView.setNavigationItemSelectedListener(this)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
