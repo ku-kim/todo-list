@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todo_list.R
 import com.example.todo_list.databinding.HistoryItemBinding
+import com.example.todo_list.history.data.HistoryCard
 
 class HistoryAdapter : ListAdapter<HistoryCard, HistoryAdapter.HistoryViewHolder>(diffUtil) {
 
@@ -36,7 +37,7 @@ class HistoryAdapter : ListAdapter<HistoryCard, HistoryAdapter.HistoryViewHolder
 
 private val diffUtil = object : DiffUtil.ItemCallback<HistoryCard>() {
     override fun areItemsTheSame(oldItem: HistoryCard, newItem: HistoryCard): Boolean {
-        return oldItem.index == newItem.index
+        return oldItem.id == newItem.id
     }
 
     override fun areContentsTheSame(oldItem: HistoryCard, newItem: HistoryCard): Boolean {
