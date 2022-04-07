@@ -9,8 +9,10 @@ import codesquad.be.todoserver.domain.Todo;
 import codesquad.be.todoserver.exception.NoSuchTodoFoundException;
 import codesquad.be.todoserver.repository.TodoRepository;
 import java.util.Optional;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+@DisplayName("API /api/todos/* 서비스 계층 단위 테스트")
 class TodoServiceTest {
 
 	private TodoRepository todoRepository = mock(TodoRepository.class);
