@@ -6,6 +6,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import codesquad.be.todoserver.domain.Todo;
+import codesquad.be.todoserver.exception.NoSuchTodoFoundException;
 import codesquad.be.todoserver.service.TodoService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,16 @@ class TodoControllerTest {
 			.andExpect(jsonPath("contents").value("add, commit, push"))
 			.andExpect(jsonPath("user").value("sam"))
 			.andExpect(jsonPath("status").value("todo"));
+	}
+
+	@Test
+	void 특정_투두리스트_조회_실패() throws Exception {
+		given(todoService.getById(4444L))
+			.willThrow(new NoSuchTodoFoundException("조회할 수 없는 Todo 입니다. id : " + 4444));
+
+		ResultActions perform = mockMvc.perform(get("/api/todos/4444"));
+
+		perform
+			.andExpect(status().isNotFound());
 	}
 }

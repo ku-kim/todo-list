@@ -1,10 +1,12 @@
 package codesquad.be.todoserver.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 
 import codesquad.be.todoserver.domain.Todo;
+import codesquad.be.todoserver.exception.NoSuchTodoFoundException;
 import codesquad.be.todoserver.repository.TodoRepository;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
@@ -27,5 +29,14 @@ class TodoServiceTest {
 		assertThat(todo.getContents()).isEqualTo("add, commit, push");
 		assertThat(todo.getUser()).isEqualTo("sam");
 		assertThat(todo.getStatus()).isEqualTo("todo");
+	}
+
+	@Test
+	void 특정_투두리스트_조회_실패() throws Exception {
+		given(todoRepository.findById(4444L))
+			.willThrow(new NoSuchTodoFoundException("조회할 수 없는 Todo 입니다. id : " + 4444));
+
+		assertThatThrownBy(() -> todoService.getById(4444L))
+			.isInstanceOf(NoSuchTodoFoundException.class);
 	}
 }

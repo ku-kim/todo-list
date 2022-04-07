@@ -40,10 +40,10 @@ class TodosApiAcceptanceTest {
         given()
             .accept(MediaType.APPLICATION_JSON_VALUE)
 
-        .when()
+            .when()
             .get("/api/todos/1")
 
-        .then()
+            .then()
             .statusCode(HttpStatus.OK.value())
             .assertThat()
             .body("id", equalTo(1))
@@ -51,6 +51,17 @@ class TodosApiAcceptanceTest {
             .body("contents", equalTo("add, commit, push"))
             .body("user", equalTo("sam"))
             .body("status", equalTo("todo"));
+    }
 
+    @Test
+    void 특정_투두리스트_조회_실패() {
+        given()
+            .accept(MediaType.APPLICATION_JSON_VALUE)
+
+            .when()
+            .get("/api/todos/4444")
+
+            .then()
+            .statusCode(HttpStatus.NOT_FOUND.value());
     }
 }
