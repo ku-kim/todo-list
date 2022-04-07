@@ -6,6 +6,7 @@
         android:id="@+id/main_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/background"
         tools:openDrawer="end">
 
         <LinearLayout
@@ -17,7 +18,7 @@
                 android:id="@+id/app_bar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#85EA4F">
+                android:background="@color/background">
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
@@ -29,17 +30,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/app_bar_title"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                        android:textAppearance="@style/app_logo" />
 
                     <ImageButton
                         android:id="@+id/btn_menu"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
                         android:layout_gravity="end"
                         android:layout_marginEnd="12dp"
-                        android:background="#00ff0000"
+                        android:background="@color/transparent"
                         android:contentDescription="@string/menu"
                         android:src="@drawable/ic_baseline_menu_24" />
 
@@ -60,9 +59,9 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_gravity="end"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="48dp"
-                android:background="#00ff0000"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="12dp"
+                android:background="@color/transparent"
                 android:contentDescription="@string/close"
                 android:src="@drawable/ic_close" />
 
