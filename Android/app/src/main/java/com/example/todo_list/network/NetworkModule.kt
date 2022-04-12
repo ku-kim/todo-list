@@ -1,11 +1,7 @@
 package com.example.todo_list.network
 
-import com.example.todo_list.history.data.HistoryCard
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.GET
-import retrofit2.http.Path
 
 class NetworkModule {
     companion object RetrofitApiObject {
