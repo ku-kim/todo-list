@@ -50,7 +50,7 @@
 
             </com.google.android.material.appbar.AppBarLayout>
 
-            <com.example.todo_list.todo.TodoView
+            <com.example.todo_list.tasks.TasksView
                 android:id="@+id/todo_todo_view"
                 android:layout_width="256dp"
                 android:layout_height="0dp"
@@ -63,7 +63,7 @@
                 custom:badge_count="0"
                 custom:title="해야할 일" />
 
-            <com.example.todo_list.todo.TodoView
+            <com.example.todo_list.tasks.TasksView
                 android:id="@+id/todo_inprogress_view"
                 android:layout_width="256dp"
                 android:layout_height="0dp"
@@ -76,7 +76,7 @@
                 custom:badge_count="0"
                 custom:title="하고 있는 일" />
 
-            <com.example.todo_list.todo.TodoView
+            <com.example.todo_list.tasks.TasksView
                 android:id="@+id/todo_done_view"
                 android:layout_width="256dp"
                 android:layout_height="0dp"

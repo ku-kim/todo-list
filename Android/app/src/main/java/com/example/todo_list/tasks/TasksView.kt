@@ -1,15 +1,14 @@
-package com.example.todo_list.todo
+package com.example.todo_list.tasks
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.todo_list.R
 
-class TodoView(context: Context, attrs: AttributeSet?) : ConstraintLayout(context, attrs) {
+class TasksView(context: Context, attrs: AttributeSet?) : ConstraintLayout(context, attrs) {
 
     private lateinit var tvTitle: TextView
     private lateinit var tvBadgeCount: TextView
@@ -40,7 +39,7 @@ class TodoView(context: Context, attrs: AttributeSet?) : ConstraintLayout(contex
         ) as LayoutInflater
 
         addView(
-            layoutInflater.inflate(R.layout.todo_view, this, false)
+            layoutInflater.inflate(R.layout.tasks_view, this, false)
         )
 
         tvTitle = findViewById(R.id.todo_title)
