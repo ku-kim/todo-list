@@ -9,11 +9,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.todo_list.data.TasksRepository
+import androidx.recyclerview.widget.ItemTouchHelper
 import com.example.todo_list.databinding.ActivityMainBinding
 import com.example.todo_list.history.HistoryAdapter
 import com.example.todo_list.history.HistoryViewModel
 import com.example.todo_list.todo.TodoAdapter
 import com.example.todo_list.todo.data.TodosCard
+import com.example.todo_list.todo.ItemTouchHelperCallback
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -28,8 +30,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val historyAdapter = HistoryAdapter()
         val todosAdapter = TodoAdapter()
+
         binding.recyclerviewHistory.adapter = historyAdapter
         binding.recyclerviewTodo.adapter = todosAdapter
+
+        binding.recyclerviewTodo.setHasFixedSize(true)
+
+        val touchHelper = ItemTouchHelperCallback(todosAdapter)
+        val helper = ItemTouchHelper(touchHelper)
+
+        helper.attachToRecyclerView(binding.recyclerviewTodo)
+
+        historyViewModel = ViewModelProvider(this, ViewModelFactory(TasksRepository())).get(HistoryViewModel::class.java)
 
         binding.btnMenu.setOnClickListener {
             binding.mainLayout.openDrawer(GravityCompat.END)
@@ -60,6 +72,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             "2022-04-06T15:30:00.000+09:00"
         )
 
+        fun aciton() = test.contents
+
         val test2 = TodosCard(
             2,
             "테스트하기2",
@@ -71,6 +85,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         )
 
         todosAdapter.submitList(listOf(test, test2))
+
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

@@ -4,13 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todo_list.R
 import com.example.todo_list.databinding.TodoItemBinding
 import com.example.todo_list.todo.data.TodosCard
 
-class TodoAdapter : ListAdapter<TodosCard, TodoAdapter.TodoViewHolder>(diffUtil) {
+class TodoAdapter : ListAdapter<TodosCard, TodoAdapter.TodoViewHolder>(diffUtil), ItemTouchHelperListener {
     inner class TodoViewHolder(private val binding: TodoItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(card: TodosCard) {
             binding.todosCard = card
@@ -30,6 +31,13 @@ class TodoAdapter : ListAdapter<TodosCard, TodoAdapter.TodoViewHolder>(diffUtil)
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
         val item = getItem(position)
         holder.bind(item)
+    }
+
+    override fun onItemMove(from_position: Int, to_position: Int): Boolean {
+        return true
+    }
+
+    override fun onItemSwipe(position: Int) {
     }
 }
 
