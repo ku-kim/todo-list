@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <data>
+
+        <variable
+            name="todosCard"
+            type="com.example.todo_list.todo.data.TodosCard" />
+    </data>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="wrap_content"
+        android:layout_height="108dp"
+        android:layout_marginTop="16dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/todo_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/todo_title"
+                android:layout_width="226dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:includeFontPadding="false"
+                android:text="TextView"
+                android:textAppearance="@style/tasks_title"
+                app:layout_constraintBottom_toTopOf="@+id/todo_body"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                bind:setTitle="@{todosCard.title}" />
+
+            <TextView
+                android:id="@+id/todo_body"
+                android:layout_width="226dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:includeFontPadding="false"
+                android:text="TextView"
+                android:textAppearance="@style/tasks_body"
+                app:layout_constraintBottom_toTopOf="@+id/todo_caption"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/todo_title"
+                bind:setContent="@{todosCard.contents}" />
+
+            <TextView
+                android:id="@+id/todo_caption"
+                android:layout_width="226dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:includeFontPadding="false"
+                android:text="TextView"
+                android:textAppearance="@style/tasks_caption"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/todo_body"
+                bind:setUser="@{todosCard.user}" />
+
+            <Button
+                android:layout_width="112dp"
+                android:layout_height="108dp"
+                android:background="#FF4343"
+                android:text="삭제"
+                app:layout_constraintLeft_toRightOf="@id/todo_item"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+</layout>

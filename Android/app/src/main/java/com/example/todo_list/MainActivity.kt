@@ -12,6 +12,8 @@ import com.example.todo_list.data.TasksRepository
 import com.example.todo_list.databinding.ActivityMainBinding
 import com.example.todo_list.history.HistoryAdapter
 import com.example.todo_list.history.HistoryViewModel
+import com.example.todo_list.todo.TodoAdapter
+import com.example.todo_list.todo.data.TodosCard
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -24,17 +26,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         historyViewModel = ViewModelProvider(this, ViewModelFactory(TasksRepository())).get(HistoryViewModel::class.java)
 
-        val adapter = HistoryAdapter()
-        binding.recyclerviewHistory.adapter = adapter
-        binding.recyclerviewHistory.layoutManager = LinearLayoutManager(this)
+        val historyAdapter = HistoryAdapter()
+        val todosAdapter = TodoAdapter()
+        binding.recyclerviewHistory.adapter = historyAdapter
+        binding.recyclerviewTodo.adapter = todosAdapter
+
         binding.btnMenu.setOnClickListener {
             binding.mainLayout.openDrawer(GravityCompat.END)
             historyViewModel.getHistories()
         }
+
         binding.btnClose.setOnClickListener { binding.mainLayout.closeDrawer(GravityCompat.END) }
         binding.naviView.setNavigationItemSelectedListener(this)
 
-        historyViewModel.historyList.observe(this) { adapter.submitList(it) }
+        historyViewModel.historyList.observe(this) { historyAdapter.submitList(it) }
         historyViewModel.checkLoading.observe(this) {
             if (it) {
                 binding.spinner.visibility = View.VISIBLE
@@ -44,6 +49,28 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 binding.recyclerviewHistory.visibility = View.VISIBLE
             }
         }
+
+        val test = TodosCard(
+            1,
+            "테스트하기1",
+            "콘텐츠테스트1",
+            "jung",
+            "doing",
+            "2022-04-06T15:30:00.000+09:00",
+            "2022-04-06T15:30:00.000+09:00"
+        )
+
+        val test2 = TodosCard(
+            2,
+            "테스트하기2",
+            "콘텐츠테스트2",
+            "park",
+            "todo",
+            "2022-04-06T15:30:00.000+09:00",
+            "2022-04-06T15:30:00.000+09:00"
+        )
+
+        todosAdapter.submitList(listOf(test, test2))
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
