@@ -84,4 +84,97 @@ class TodosApiAcceptanceTest {
             .body("user", equalTo("sam"))
             .body("status", equalTo("doing"));
     }
+
+    @Test
+    void Todo의_타이틀_수정_요청시_수정된_Todo를_반환한다() {
+        JSONObject requestBody = new JSONObject();
+        requestBody.put("title", "블로그에 포스팅 꼭~~~~하기");
+
+        given()
+            .accept(MediaType.APPLICATION_JSON_VALUE)
+            .header("Content-type", "application/json")
+            .body(requestBody)
+
+        .when()
+            .patch("/api/todos/2")
+
+        .then()
+            .statusCode(HttpStatus.OK.value())
+            .assertThat()
+            .body("id", equalTo(2))
+            .body("title", equalTo("블로그에 포스팅 꼭~~~~하기"))
+            .body("contents", equalTo("*Github 공부내용 \\r\\n *모던 자바스크립트 1장 공부내용"))
+            .body("user", equalTo("sam"))
+            .body("status", equalTo("todo"));
+    }
+
+    @Test
+    void Todo의_본문_수정_요청시_수정된_Todo를_반환한다() {
+        JSONObject requestBody = new JSONObject();
+        requestBody.put("contents", "오늘은 Github 공부를 했다. 오늘에서야 쓴다!");
+
+        given()
+            .accept(MediaType.APPLICATION_JSON_VALUE)
+            .header("Content-type", "application/json")
+            .body(requestBody)
+
+        .when()
+            .patch("/api/todos/2")
+
+        .then()
+            .statusCode(HttpStatus.OK.value())
+            .assertThat()
+            .body("id", equalTo(2))
+            .body("title", equalTo("블로그에 포스팅 꼭~~~~하기"))
+            .body("contents", equalTo("오늘은 Github 공부를 했다. 오늘에서야 쓴다!"))
+            .body("user", equalTo("sam"))
+            .body("status", equalTo("todo"));
+    }
+
+    @Test
+    void Todo의_타이틀과_본문_수정_요청시_수정된_Todo를_반환한다() {
+        JSONObject requestBody = new JSONObject();
+        requestBody.put("title", "블로그에 포스팅 꼭~~~~하기");
+        requestBody.put("contents", "오늘은 Github 공부를 했다. 오늘에서야 쓴다!");
+
+        given()
+            .accept(MediaType.APPLICATION_JSON_VALUE)
+            .header("Content-type", "application/json")
+            .body(requestBody)
+
+        .when()
+            .patch("/api/todos/2")
+
+        .then()
+            .statusCode(HttpStatus.OK.value())
+            .assertThat()
+            .body("id", equalTo(2))
+            .body("title", equalTo("블로그에 포스팅 꼭~~~~하기"))
+            .body("contents", equalTo("오늘은 Github 공부를 했다. 오늘에서야 쓴다!"))
+            .body("user", equalTo("sam"))
+            .body("status", equalTo("todo"));
+    }
+
+    @Test
+    void Todo의_상태_수정_요청시_수정된_Todo를_반환한다() {
+        JSONObject requestBody = new JSONObject();
+        requestBody.put("status", "doing");
+
+        given()
+            .accept(MediaType.APPLICATION_JSON_VALUE)
+            .header("Content-type", "application/json")
+            .body(requestBody)
+
+        .when()
+            .patch("/api/todos/2")
+
+        .then()
+            .statusCode(HttpStatus.OK.value())
+            .assertThat()
+            .body("id", equalTo(2))
+            .body("title", equalTo("블로그에 포스팅 꼭~~~~하기"))
+            .body("contents", equalTo("오늘은 Github 공부를 했다. 오늘에서야 쓴다!"))
+            .body("user", equalTo("sam"))
+            .body("status", equalTo("doing"));
+    }
 }
