@@ -1,6 +1,7 @@
 package codesquad.be.todoserver.controller;
 
 import codesquad.be.todoserver.controller.model.RegisterTodoDto;
+import codesquad.be.todoserver.controller.model.UpdateTodoDto;
 import codesquad.be.todoserver.domain.Todo;
 import codesquad.be.todoserver.service.TodoService;
 import java.util.List;
@@ -8,6 +9,7 @@ import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -43,5 +45,11 @@ public class TodoController {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deleteTodo(@PathVariable Long id) {
 		todoService.deleteById(id);
+	}
+
+	@PatchMapping("/todos/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	public Todo updateTodo(@PathVariable Long id, @Valid @RequestBody UpdateTodoDto updateTodoDto) {
+		return todoService.updateTodo(updateTodoDto);
 	}
 }

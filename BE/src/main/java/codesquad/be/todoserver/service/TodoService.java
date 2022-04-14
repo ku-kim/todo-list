@@ -2,6 +2,7 @@ package codesquad.be.todoserver.service;
 
 import codesquad.be.todoserver.controller.TodoDtoMapper;
 import codesquad.be.todoserver.controller.model.RegisterTodoDto;
+import codesquad.be.todoserver.controller.model.UpdateTodoDto;
 import codesquad.be.todoserver.domain.Action;
 import codesquad.be.todoserver.domain.History;
 import codesquad.be.todoserver.domain.Todo;
@@ -52,5 +53,9 @@ public class TodoService {
 
 		historyRepository.saveHistory(History.of(todo, Action.REMOVE));
 		return todoRepository.deleteById(id);
+	}
+
+	public Todo updateTodo(UpdateTodoDto updateTodoDto) {
+		return null;
 	}
 }
