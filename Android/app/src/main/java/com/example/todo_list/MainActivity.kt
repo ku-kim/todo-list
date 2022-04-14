@@ -12,6 +12,7 @@ import com.example.todo_list.history.HistoryAdapter
 import com.example.todo_list.tasks.data.Task
 import com.google.android.material.navigation.NavigationView
 
+
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var binding: ActivityMainBinding
     private lateinit var tasksViewModel: TasksViewModel
@@ -43,6 +44,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 binding.recyclerviewHistory.visibility = View.VISIBLE
             }
         }
+
 
         val task1 = Task(
             1,
