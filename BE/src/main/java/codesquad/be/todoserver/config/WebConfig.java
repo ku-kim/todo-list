@@ -7,6 +7,8 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -18,6 +20,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 @EnableWebMvc
 public class WebConfig implements WebMvcConfigurer {
+
+	private static Logger log = LoggerFactory.getLogger(WebConfig.class);
 
 	private static final String dateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss";
 
@@ -38,8 +42,9 @@ public class WebConfig implements WebMvcConfigurer {
 		JavaTimeModule module = new JavaTimeModule();
 		module.addSerializer(LocalDateTime.class, localDateTimeSerializer);
 		module.addDeserializer(LocalDateTime.class, localDateTimeDeserializer);
+
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.registerModule(module);
-		converters.add(0, new MappingJackson2HttpMessageConverter(mapper));
+		converters.add(new MappingJackson2HttpMessageConverter(mapper));
 	}
 }

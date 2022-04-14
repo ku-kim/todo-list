@@ -56,6 +56,15 @@ public class TodoService {
 	}
 
 	public Todo updateTodo(UpdateTodoDto updateTodoDto) {
+		Todo saveTodo = todoRepository.saveTodo(
+			TodoDtoMapper.toDomainFromUpdateTodoDto(updateTodoDto));
+
+		historyRepository.saveHistory(History.of(saveTodo, Action.ADD));
+
 		return null;
+	}
+
+	private void validUpdateTodoDto(UpdateTodoDto dto) {
+//		if (dto.)
 	}
 }

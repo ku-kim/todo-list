@@ -21,4 +21,9 @@ public class UpdateTodoDto {
 	@Size(max = 10)
 	private String status;
 
+
+	public boolean isvalid() {
+//		if (title.isEmpty() || contents)
+		return true;
+	}
 }
